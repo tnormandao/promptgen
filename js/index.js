@@ -2,39 +2,39 @@ let App = null;
 
 const ELEMENTS_TYPES = {
   artists: {
-    link: '/db/artists.txt',
+    link: '/promptgen/db/artists.txt',
     template: 'varTemplate1',
   },
   flavors:  {
-    link: '/db/flavors.txt',
+    link: '/promptgen/db/flavors.txt',
     template: 'varTemplate1',
   },
   mediums:  {
-    link: '/db/mediums.txt',
+    link: '/promptgen/db/mediums.txt',
     template: 'varTemplate1',
   },
   movements:  {
-    link: '/db/movements.txt',
+    link: '/promptgen/db/movements.txt',
     template: 'varTemplate1',
   },
   male:  {
-    link: '/db/random.male.txt',
+    link: '/promptgen/db/random.male.txt',
     template: 'varTemplate1',
   },
   female:  {
-    link: '/db/random.female.txt',
+    link: '/promptgen/db/random.female.txt',
     template: 'varTemplate1',
   },
   item:  {
-    link: '/db/item.txt',
+    link: '/promptgen/db/item.txt',
     template: 'varTemplate1',
   },
   atmosphere:  {
-    link: '/db/atmosphere.txt',
+    link: '/promptgen/db/atmosphere.txt',
     template: 'varTemplate1',
   },
   activity:  {
-    link: '/db/activity.txt',
+    link: '/promptgen/db/activity.txt',
     template: 'varTemplate1',
   },
   custom:  {
