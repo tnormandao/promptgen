@@ -1,0 +1,108 @@
+/* Тепер визначте анімацію */
+@keyframes colorFade {
+  from {
+    background-color: lightgreen; /* Початковий колір - зелений */
+  }
+  to {
+    background-color: white; /* Кінцевий колір - білий */
+  }
+}
+
+#prompt {
+  width: 600px;
+  height: 200px;
+  background-color: aliceblue;
+  font-size: 18px;
+}
+
+#modules_line_element {
+  width: 600px;
+  background-color: blanchedalmond;
+}
+
+#buttons {
+
+}
+
+.gen_module input{
+  -webkit-user-select: auto; /* Safari */
+  -ms-user-select: auto; /* IE 10 and IE 11 */
+  user-select: auto; /* Standard syntax */
+}
+
+.gen_module{
+  display: inline-block;
+  padding: 2px 5px;
+  margin: 2px;
+  border: none;
+  box-shadow: 0px 3px 5px #ccc;
+  border-radius: 5px;
+  background: #fefefe;
+  cursor: pointer;
+}
+
+.gen_module_def{
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+
+.gen_module:hover{
+  box-shadow: 0px 3px 5px #7a6e5e;
+}
+.gen_module.dragged_on_right{
+  border-right: 4px #35ffee solid;
+}
+.gen_module.dragged_on_left{
+  border-left: 4px #35ffee solid;
+}
+
+.gen_module button{
+  height: 16px;
+  width: 16px;
+  line-height: 10px;
+  padding: 1px 3px;
+  margin: 3px 3px 3px 10px;
+  border: none;
+  box-shadow: 0px 3px 5px #ccc;
+  cursor: pointer;
+}
+.text_part_span {
+  border: none;
+  background-color: #fff; 
+  animation: colorFade 1450ms ease-in-out; 
+}
+.text_part_span.hovered_control_element {
+  box-shadow: inset 0 0 7px #356b35;
+}
+
+.removeDatasetButton {
+  display: block;
+  float: right;
+  background-color: rgb(255 115 115);
+  color: #fff;
+  border-radius: 3px;
+  width: 12px;
+  height: 12px;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 11px;
+  margin: 1px -5px 0px 4px;
+}
+
+.install_custom_dataset_button {
+  background-color: #dadada;
+  padding: 1px 8px;
+  margin: 2px;
+  color: #000;
+  font-size: 10px;
+  border-radius: 3px;
+  line-height: 10px;
+  cursor: pointer;
+}
+
+.install_custom_dataset_button:hover {
+  background-color: #ffa127;
+  color: #fefefe;
+}

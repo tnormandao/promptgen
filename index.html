@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>prompt generator</title>
+    <meta name="viewport" content="width=device-width,user-scalable=no,minimum-scale=1,maximum-scale=1">
+    <link href="style/style.css" rel="stylesheet">
+  </head>
+  <body class="noselect">
+    <script  type="module" src="js/index.js"></script>
+    <button style="width: 600px;" id="generate" class="mbutton" value="generate_prompt">gen</button>
+    <div style="display: none;" >
+      <div class="gen_module gen_module_def" id="varTemplate1"><button class="mRemove">x</button></div>
+      <div class="gen_module gen_module_input" id="varTemplate2"><input class="gen_module_textarea" type="text" /><button class="mRemove">x</button></div>
+      <div class="gen_module gen_module_def" id="varTemplate3">,<button class="mRemove">x</button></div>
+    </div>
+    <div id="prompt"></div>
+    <!-- <button value="copy_to_clipboard" onclick="eClick(this)">copy_to_clipboard</button> -->
+    <div id="modules_line_element"></div>
+    <div id="buttons">
+      <button class="mbutton" value="add_custom">+ custom</button>
+      <button class="mbutton" value="add_coma">+ comma</button>
+      ||
+      <button class="mbutton" value="add_flavors">+ flavors</button>
+      ||
+      <button class="mbutton" value="add_activity">+ activity</button>
+      <button class="mbutton" value="add_atmosphere">+ atmosphere</button>
+      <button class="mbutton" value="add_artists">+ artists</button>
+      
+      <br>
+      <!-- <button class="mbutton" value="add_movement">+ movement</button> -->
+      <button class="mbutton" value="add_female">+ female</button>
+      <button class="mbutton" value="add_male">+ male</button>
+      <button class="mbutton" value="add_item">+ item</button>
+      <button class="mbutton" value="add_mediums">+ mediums (style)</button>
+      <br>
+      <div id="custom_datasets" title="custom datasets" ></div>|| 
+      <label for="installCustomDataset" class="install_custom_dataset_button">install custom dataset</label>
+      <input type="file" id="installCustomDataset" style="visibility:hidden;" title="install custom dataset" value="install_custom_dataset" />
+      <span style="font-size: 10px; color: #999 ;">extension file .txt - each new prompt starts on a new line</span>
+    </div>
+  </body>
+  </html>
