@@ -350,12 +350,16 @@ class GenPrompt {
     };
   }
 
-  elementsToLS(){
+  serialiseElements(){
     let resultData = [];
     for( const nextElement of this.elements ){
       resultData.push( nextElement.serialised );
     }
-    _LS.set( resultData );
+    return resultData;
+  }
+
+  elementsToLS(){
+    _LS.set( this.serialiseElements() );
   }
 
   prepareCustomDataset( type, stringData ){
@@ -372,6 +376,42 @@ class GenPrompt {
       };
       fr.readAsDataURL( new File( [ stringData ], { type: 'text/plain' } ) );
     } );
+  }
+  
+  get dateNow(){
+    const date = new Date();
+    let year = date.getFullYear();
+    let month = ( date.getMonth() + '' ).length === 1 ? '0' + ( date.getMonth() + 1 ) : date.getMonth() + 1;
+    let day = ( date.getDate() + '' ).length === 1 ? '0' + date.getDate(): date.getDate();
+    let hours = ( date.getHours() + '' ).length === 1 ? '0' + date.getHours(): date.getHours();
+    let minutes = ( date.getMinutes() + '' ).length === 1 ? '0' + date.getMinutes(): date.getMinutes();
+    let seconds = ( date.getSeconds() + '' ).length === 1 ? '0' + date.getSeconds(): date.getSeconds();
+    const combined_string = `${year}${month}${day}-${hours}${minutes}${seconds}`;
+    return combined_string;
+  }
+
+  saveWorkflow(){
+    const nextWorkflowForSave = {
+      time: Date.now(),
+      type: 'promptGenWorkflow',
+      elements: this.serialiseElements(),
+      datasets: JSON.parse(JSON.stringify( this.localStoredDatasets )),
+    };
+    const a = document.getElementById("save_workflow");
+    const file = new Blob([ JSON.stringify( nextWorkflowForSave, null, 2 ) ], { type: 'application/json' });
+    a.href = URL.createObjectURL(file);
+    a.download = this.dateNow+'_workflow.json';
+  }
+
+  loadWorkflow( workflowJSON ){
+    if( workflowJSON.type && workflowJSON.type === 'promptGenWorkflow' ){
+      const elements = workflowJSON.elements;
+      _LS.set( elements );
+      const datasets = workflowJSON.datasets;
+      this.localStoredDatasets = datasets;
+      this.saveLocalStoredDataSets();
+      window.location.reload();
+    }
   }
 
   installCustomDataset( dataset ){
@@ -620,9 +660,6 @@ window.onload = () => {
   App = new GenPrompt();
 
   const tempInput = document.getElementById('installCustomDataset');
-  tempInput.style.display = 'none';
-  tempInput.type = 'file';
-  tempInput.accept = '.txt';
   tempInput.customListener = ()=>{};
   tempInput.addEventListener('change', ( e ) => {
     const nextTXTDATASET = tempInput.files[0];
@@ -633,6 +670,27 @@ window.onload = () => {
     };
     nfr.readAsText( nextTXTDATASET );
   });
+  
+  const saveButton = document.getElementById('save_workflow');
+  saveButton.addEventListener('click', () => {
+    App.saveWorkflow();
+  });
+
+  const load_workflow_input = document.getElementById('load_workflow_input');
+  load_workflow_input.addEventListener('change', ( e ) => {
+    const nextTXTDATASET = load_workflow_input.files[0];
+    const nfr = new FileReader();
+    nfr.onload = () => {
+      let asJSON = null;
+      try{
+        asJSON = JSON.parse( nfr.result );
+      } catch( err ){}
+      if( asJSON )App.loadWorkflow( asJSON );
+      tempInput.files = null;
+    };
+    nfr.readAsText( nextTXTDATASET );
+  });
+
 
   const elementsMButtons = document.querySelectorAll('.mbutton');
   for( const nextE of elementsMButtons ){
