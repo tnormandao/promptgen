@@ -698,6 +698,21 @@ window.onload = () => {
       App.onClick( e.target ); 
     });
   }
+
+  const copyClipboard  = ( txt ) => {
+    var inp = document.createElement('input');
+    document.body.appendChild(inp);
+    inp.value = txt;
+    inp.select();
+    document.execCommand('copy',false);
+    inp.remove();
+  }
+
+  document.getElementById("copy_clipboard").addEventListener( 'click', () => {
+    const prompt = App.prompt.replaceAll( '\r', '' );
+    copyClipboard( prompt );
+  });
+  
 }
 
 window.eClick = ( e ) => { if( App ){ App.onClick( e ); } }
