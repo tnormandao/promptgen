@@ -289,6 +289,7 @@ class GenPrompt {
       },
       changeModuleContent: ( gen_module ) => {
         this.resetModulesRandomly( gen_module );
+        this.prompt = document.getElementById('prompt').innerText;
         // this.presetPrompt();
       },
       enterModule: ( data )=>{
