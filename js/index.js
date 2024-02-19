@@ -563,8 +563,18 @@ class GenPrompt {
       if( forCheck in ELEMENTS_TYPES ){
         this.addElement( forCheck );
       } else if( _val === 'generate_prompt') {
-        this.resetModulesRandomly();
-        this.presetPrompt();
+        if( window.REPEAT_AND_LOG ){
+          let finallyStting = '';
+          for( let i = 0; i < window.REPEAT_AND_LOG; i++ ){
+            this.resetModulesRandomly();
+            this.presetPrompt();
+            finallyStting += this.prompt.replaceAll('\n', ' ').replaceAll('\r', ' ') + '\n';
+          }
+          console.log( finallyStting );
+        } else {
+          this.resetModulesRandomly();
+          this.presetPrompt();
+        }
       } else if( _val === 'copy_to_clipboard') {
         this.removeElement( clickedElement );
       }
